@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Use Routes instead of Switch
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Discover from './components/Discover';
+import Library from './components/Library';
+import SignIn from './components/SignIn'; // Ensure this file exists
+import SignUp from './components/SignUp'; // Ensure this file exists
+import ArticleDetail from './components/ArticleDetail'; // Import the ArticleDetail component
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <Router>
+            <div className="flex">
+                <Navbar />
+                <div className="flex-grow ml-64 p-4 bg-black min-h-screen">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/discover" element={<Discover />} />
+                        <Route path="/library" element={<Library />} />
+                        <Route path="/signin" element={<SignIn />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/article/:id" element={<ArticleDetail />} /> {/* Route for Article Detail */}
+                    </Routes>
+                </div>
+            </div>
+        </Router>
+    );
+};
 
 export default App;
